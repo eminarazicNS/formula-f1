@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import axios from "axios";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { getFlagByNationality } from "../helper/getFlag";
 import Flag from "react-flagkit";
@@ -11,7 +11,6 @@ export default function AllTeams(props) {
     const [teams, setTeams] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filteredTeams, setFilteredTeams] = useState([]);
-    const [sortedByCollName, setSortedByCollName] = useState({ coll: "Position", isAsc: true });
 
     const navigate = useNavigate();
 
@@ -20,42 +19,12 @@ export default function AllTeams(props) {
     }, [props.year]);
 
     useEffect(() => {
-        //filtriranje
-        let result = teams.filter((item) =>
+        const result = teams.filter((item) =>
             item.Constructor.name.toLowerCase().includes(props.search.toLowerCase())
         );
-        //sortiranje
-        console.log("start sorting sortedByCollName= ", sortedByCollName);
-
-        result = [...result]; //kopija niza
-        switch (sortedByCollName.coll) {
-            case "Position":
-                if (sortedByCollName.isAsc) {
-                    result = result.sort((a, b) => Number(a.position) - Number(b.position));
-                } else {
-                    result = result.sort((a, b) => Number(b.position) - Number(a.position));
-                }
-                break;
-            case "Team":
-                if (sortedByCollName.isAsc) {
-                    result = result.sort((a, b) =>
-                        (a.Constructor.name).toLowerCase().localeCompare((b.Constructor.name).toLowerCase()));
-                } else {
-                    result = result.sort((a, b) =>
-                        (b.Constructor.name).toLowerCase().localeCompare((a.Constructor.name).toLowerCase()));
-                }
-                break;
-            case "Points":
-                if (sortedByCollName.isAsc) {
-                    result = result.sort((a, b) => Number(a.points) - Number(b.points));
-                } else {
-                    result = result.sort((a, b) => Number(b.points) - Number(a.points));
-                }
-                break;
-        }
 
         setFilteredTeams(result);
-    }, [teams, props.search, sortedByCollName]);
+    }, [teams, props.search]);
 
 
 
@@ -66,21 +35,6 @@ export default function AllTeams(props) {
         setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
         setLoading(false);
     };
-
-
-    const handleClickOnHeader = (collName) => {
-        console.log("start handleClickOnHeader CollName=", collName, " sortedByCollName=", sortedByCollName);
-        let currIsAsc = sortedByCollName.isAsc;
-        let currCollName = collName;
-
-        if (sortedByCollName.coll === currCollName) {
-            currIsAsc = !currIsAsc;
-        } else {
-            currIsAsc = true;
-        }
-        setSortedByCollName({ coll: currCollName, isAsc: currIsAsc });
-    }
-
 
     if (loading) {
         return <Loader />;
@@ -100,17 +54,10 @@ export default function AllTeams(props) {
                 <table>
                     <thead>
                         <tr>
-                            <th onClick={() => handleClickOnHeader("Position")}>
-                                <Link>Round {sortedByCollName.coll != "Position" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-
-                            <th onClick={() => handleClickOnHeader("Team")}>
-                                <Link>Round {sortedByCollName.coll != "Team" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                            <th>Position</th>
+                            <th>Team</th>
                             <th>Details</th>
-                            <th onClick={() => handleClickOnHeader("Points")}>
-                                <Link>Round {sortedByCollName.coll != "Points" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                            <th>Points</th>
                         </tr>
                     </thead>
                     <tbody>
