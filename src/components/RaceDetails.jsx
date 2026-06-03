@@ -1,7 +1,7 @@
 //Ne radi pretraga po Search polju, pa je taj deo zakomentarisan.
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import Loader from "./Loader";
 import { getFlagByNationality } from "../helper/getFlag";
 import Flag from "react-flagkit";
@@ -16,6 +16,8 @@ export default function RaceDetails(props) {
     const [isError, setIsError] = useState(false);
     const [filteredQualifying, setFilteredQualifying] = useState([]);
     const [filteredRaces, setFilteredRaces] = useState([]);
+    const [sortedByCollNameQ, setSortedByCollNameQ] = useState({ coll: "Pos", isAsc: true });
+    const [sortedByCollNameR, setSortedByCollNameR] = useState({ coll: "Pos", isAsc: true });
 
     const params = useParams();
 
@@ -26,19 +28,107 @@ export default function RaceDetails(props) {
     }, [props.year]);
 
     useEffect(() => {
-        const resultQ = qualifying.filter((item) =>
+        //filtriranje
+        let resultQ = qualifying.filter((item) =>
             item.Driver.familyName.toLowerCase().includes(props.search.toLowerCase()) ||
             item.Constructor.name.toLowerCase().includes(props.search.toLowerCase())
         );
 
-        const resultR = races.Results?.filter((item) =>
+        let resultR = races.Results?.filter((item) =>
             item.Driver.familyName.toLowerCase().includes(props.search.toLowerCase()) ||
             item.Constructor.name.toLowerCase().includes(props.search.toLowerCase())
         );
+
+        //sortiranje
+        switch (sortedByCollNameQ.coll) {
+            case "Pos":
+                if (sortedByCollNameQ.isAsc) {
+                    resultQ = resultQ.sort((a, b) => Number(a.position) - Number(b.position));
+                } else {
+                    resultQ = resultQ.sort((a, b) => Number(b.position) - Number(a.position));
+                }
+                break;
+            case "Driver":
+                if (sortedByCollNameQ.isAsc) {
+                    resultQ = resultQ.sort((a, b) =>
+                        (a.Driver.familyName).toLowerCase().localeCompare((b.Driver.familyName).toLowerCase()));
+                } else {
+                    resultQ = resultQ.sort((a, b) =>
+                        (b.Driver.familyName).toLowerCase().localeCompare((a.Driver.familyName).toLowerCase()));
+                }
+                break;
+            case "Team":
+                if (sortedByCollNameQ.isAsc) {
+                    resultQ = resultQ.sort((a, b) =>
+                        a.Constructor.name.toLowerCase().localeCompare(b.Constructor.name.toLowerCase()));
+                } else {
+                    resultQ = resultQ.sort((a, b) =>
+                        b.Constructor.name.toLowerCase().localeCompare(a.Constructor.name.toLowerCase()));
+                }
+                break;
+            case "Best time":
+                if (sortedByCollNameQ.isAsc) {
+                    resultQ = resultQ.sort((a, b) =>
+                    bestTime(a.Q1, a.Q2, a.Q3).localeCompare(bestTime(b.Q1, b.Q2, b.Q3)));
+                    // resultQ = resultQ.sort((a, b) => Number(bestTime(a.Q1, a.Q2, a.Q3)) - Number(bestTime(b.Q1, b.Q2, b.Q3)));
+                } else {
+                    resultQ = resultQ.sort((a, b) =>
+                    bestTime(b.Q1, b.Q2, b.Q3).localeCompare(bestTime(a.Q1, a.Q2, a.Q3)));
+                    // resultQ = resultQ.sort((a, b) => Number(bestTime(b.Q1, b.Q2, b.Q3)) - Number(bestTime(a.Q1, a.Q2, a.Q3)));
+                }
+                break;
+        }
+
+
+        switch (sortedByCollNameR.coll) {
+            case "Pos":
+                if (sortedByCollNameR.isAsc) {
+                    resultR = resultR?.sort((a, b) => Number(a.position) - Number(b.position));
+                } else {
+                    resultR = resultR.sort((a, b) => Number(b.position) - Number(a.position));
+                }
+                break;
+            case "Driver":
+                if (sortedByCollNameR.isAsc) {
+                    resultR = resultR.sort((a, b) =>
+                        (a.Driver.familyName).toLowerCase().localeCompare((b.Driver.familyName).toLowerCase()));
+                } else {
+                    resultR = resultR.sort((a, b) =>
+                        (b.Driver.familyName).toLowerCase().localeCompare((a.Driver.familyName).toLowerCase()));
+                }
+                break;
+            case "Team":
+                if (sortedByCollNameR.isAsc) {
+                    resultR = resultR.sort((a, b) =>
+                        a.Constructor.name.toLowerCase().localeCompare(b.Constructor.name.toLowerCase()));
+                } else {
+                    resultR = resultR.sort((a, b) =>
+                        b.Constructor.name.toLowerCase().localeCompare(a.Constructor.name.toLowerCase()));
+                }
+                break;
+            case "Result":
+                if (sortedByCollNameR.isAsc) {
+                    resultR = resultR.sort((a, b) =>
+                        a.Time?.time || "DNQ".toLowerCase().localeCompare(b.Time?.time || "DNQ".toLowerCase()));
+                } else {
+                    resultR = resultR.sort((a, b) =>
+                        b.Time?.time || "DNQ".toLowerCase().localeCompare(a.Time?.time || "DNQ".toLowerCase()));
+                }
+                break;
+            case "Points":
+                if (sortedByCollNameR.isAsc) {
+                    resultR = resultR.sort((a, b) => Number(a.points) - Number(b.points));
+                } else {
+                    resultR = resultR.sort((a, b) => Number(b.points) - Number(a.points));
+                }
+                break;
+        }
+
+
 
         setFilteredQualifying(resultQ);
         setFilteredRaces(resultR);
-    }, [props.search, qualifying, races])
+    }, [props.search, qualifying, races, sortedByCollNameQ, sortedByCollNameR])
 
     const getRaceDetails = async () => {
         setIsError(false);
@@ -59,6 +149,18 @@ export default function RaceDetails(props) {
         } finally {
             setLoading(false);
         }
+    }
+
+    const handleClickOnHeader = (collName, sortedByCollName,setSortedByCollName) => {
+        let currIsAsc = sortedByCollName.isAsc;
+        let currCollName = collName;
+
+        if (sortedByCollName.coll === currCollName) {
+            currIsAsc = !currIsAsc;
+        } else {
+            currIsAsc = true;
+        }
+        setSortedByCollName({ coll: currCollName, isAsc: currIsAsc });
     }
 
     const bestTime = (q1, q2, q3) => {
@@ -127,10 +229,22 @@ export default function RaceDetails(props) {
                     <table>
                         <thead>
                             <tr>
-                                <th>Pos</th>
-                                <th>Driver</th>
-                                <th>Team</th>
-                                <th>Best time</th>
+                                <th onClick={() => handleClickOnHeader("Pos",sortedByCollNameQ,setSortedByCollNameQ)}>
+                                    <Link>Pos {sortedByCollNameQ.coll != "Pos" ? '' :
+                                        (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader("Driver",sortedByCollNameQ,setSortedByCollNameQ)}>
+                                    <Link>Driver {sortedByCollNameQ.coll != "Driver" ? '' :
+                                        (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader("Team",sortedByCollNameQ,setSortedByCollNameQ)}>
+                                    <Link>Team {sortedByCollNameQ.coll != "Team" ? '' :
+                                        (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader("Best time",sortedByCollNameQ,setSortedByCollNameQ)}>
+                                    <Link>Best time {sortedByCollNameQ.coll != "Best time" ? '' :
+                                        (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -168,11 +282,25 @@ export default function RaceDetails(props) {
                     <table>
                         <thead>
                             <tr>
-                                <th>Pos</th>
-                                <th>Driver</th>
-                                <th>Team</th>
-                                <th>Result</th>
-                                <th>Points</th>
+                                <th onClick={() => handleClickOnHeader("Pos",sortedByCollNameR, setSortedByCollNameR)}>
+                                    <Link>Pos {sortedByCollNameR.coll != "Pos" ? '' :
+                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader("Driver",sortedByCollNameR, setSortedByCollNameR)}>
+                                    <Link>Driver {sortedByCollNameR.coll != "Driver" ? '' :
+                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader("Team",sortedByCollNameR, setSortedByCollNameR)}>
+                                    <Link>Team {sortedByCollNameR.coll != "Team" ? '' :
+                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader("Result",sortedByCollNameR, setSortedByCollNameR)}>
+                                    <Link>Result {sortedByCollNameR.coll != "Result" ? '' :
+                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader("Points",sortedByCollNameR, setSortedByCollNameR)}>
+                                    <Link>Points {sortedByCollNameR.coll != "Points" ? '' :
+                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
                             </tr>
                         </thead>
                         <tbody>

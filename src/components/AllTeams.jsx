@@ -25,9 +25,6 @@ export default function AllTeams(props) {
             item.Constructor.name.toLowerCase().includes(props.search.toLowerCase())
         );
         //sortiranje
-        console.log("start sorting sortedByCollName= ", sortedByCollName);
-
-        result = [...result]; //kopija niza
         switch (sortedByCollName.coll) {
             case "Position":
                 if (sortedByCollName.isAsc) {
@@ -69,7 +66,6 @@ export default function AllTeams(props) {
 
 
     const handleClickOnHeader = (collName) => {
-        console.log("start handleClickOnHeader CollName=", collName, " sortedByCollName=", sortedByCollName);
         let currIsAsc = sortedByCollName.isAsc;
         let currCollName = collName;
 

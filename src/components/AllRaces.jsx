@@ -28,9 +28,6 @@ export default function AllRaces(props) {
         );
 
         //sortiranje
-        console.log("start sorting sortedByCollName= ", sortedByCollName);
-
-        result = [...result]; //kopija niza
         switch (sortedByCollName.coll) {
             case "Round":
                 if (sortedByCollName.isAsc) {
@@ -82,7 +79,7 @@ export default function AllRaces(props) {
     const getRaces = async () => {
         const url = `https://api.jolpi.ca/ergast/f1/${props.year}/results/1.json`;
         const response = await axios.get(url);
-        console.log("races=", response.data.MRData.RaceTable.Races);
+        //console.log("races=", response.data.MRData.RaceTable.Races);
         setRaces(response.data.MRData.RaceTable.Races);
         setLoading(false);
     }
@@ -93,7 +90,6 @@ export default function AllRaces(props) {
 
 
     const handleClickOnHeader = (collName) => {
-        console.log("start handleClickOnHeader CollName=", collName, " sortedByCollName=", sortedByCollName);
         let currIsAsc = sortedByCollName.isAsc;
         let currCollName = collName;
 

@@ -27,7 +27,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-   // console.log("Location: ", location);
     if (location.pathname === "/") {
       setSearchIsVisible(false);
       setSelectIsVisible(false);

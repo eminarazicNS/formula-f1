@@ -14,6 +14,7 @@ export default function TeamDetails(props) {
     const [loading, setLoading] = useState(true);
     const [isError, setIsError] = useState(false);
     const [filteredTeamRaces, setFilteredTeamRaces] = useState([]);
+    const [sortedByCollName, setSortedByCollName] = useState({ coll: "Round", isAsc: true });
 
     const navigate = useNavigate();
 
@@ -22,9 +23,55 @@ export default function TeamDetails(props) {
     }, [props.year]);
 
     useEffect(() => {
-        const result = teamRaces.filter((item) => item.raceName.toLowerCase().includes(props.search.toLowerCase()));
+        //filtriranje
+        let result = teamRaces.filter((item) => item.raceName.toLowerCase().includes(props.search.toLowerCase()));
+
+        //sortiranje
+        switch (sortedByCollName.coll) {
+            case "Round":
+                if (sortedByCollName.isAsc) {
+                    result = result.sort((a, b) => Number(a.round) - Number(b.round));
+                } else {
+                    result = result.sort((a, b) => Number(b.round) - Number(a.round));
+                }
+                break;
+            case "Grand Prix":
+                if (sortedByCollName.isAsc) {
+                    result = result.sort((a, b) =>
+                        (a.raceName).toLowerCase().localeCompare((b.raceName).toLowerCase())
+                        || (a.raceName).toLowerCase().localeCompare((b.raceName).toLowerCase())
+                    );
+                } else {
+                    result = result.sort((a, b) =>
+                        (b.raceName).toLowerCase().localeCompare((a.raceName).toLowerCase())
+                        || (b.raceName).toLowerCase().localeCompare((a.raceName).toLowerCase())
+                    );
+                }
+                break;
+            case (teamRaces[0]?.Results[0]?.Driver?.familyName ?? ''):
+                if (sortedByCollName.isAsc) {
+                    result = result.sort((a, b) => Number(a.Results[0]?.position ?? '') - Number(b.Results[0]?.position ?? ''));
+                } else {
+                    result = result.sort((a, b) => Number(b.Results[0]?.position ?? '') - Number(a.Results[0]?.position ?? ''));
+                }
+                break;
+            case (teamRaces[0]?.Results[1]?.Driver?.familyName ?? ''):
+                if (sortedByCollName.isAsc) {
+                    result = result.sort((a, b) => Number(a.Results[1]?.position ?? '') - Number(b.Results[1]?.position ?? ''));
+                } else {
+                    result = result.sort((a, b) => Number(b.Results[1]?.position ?? '') - Number(a.Results[1]?.position ?? ''));
+                }
+                break;
+            case "Points":
+                if (sortedByCollName.isAsc) {
+                    result = result.sort((a, b) => Number(a.Results[0]?.points ?? '') - Number(b.Results[0]?.points ?? ''));
+                } else {
+                    result = result.sort((a, b) => Number(b.Results[0]?.points ?? '') - Number(a.Results[0]?.points ?? ''));
+                }
+                break;
+        }
         setFilteredTeamRaces(result);
-    }, [teamRaces, props.search]);
+    }, [teamRaces, props.search, sortedByCollName]);
 
     const params = useParams();
 
@@ -54,6 +101,19 @@ export default function TeamDetails(props) {
         } finally {
             setLoading(false);
         }
+    }
+
+
+    const handleClickOnHeader = (collName) => {
+        let currIsAsc = sortedByCollName.isAsc;
+        let currCollName = collName;
+
+        if (sortedByCollName.coll === currCollName) {
+            currIsAsc = !currIsAsc;
+        } else {
+            currIsAsc = true;
+        }
+        setSortedByCollName({ coll: currCollName, isAsc: currIsAsc });
     }
 
 
@@ -140,11 +200,24 @@ export default function TeamDetails(props) {
                     <table>
                         <thead>
                             <tr>
-                                <th>Round</th>
-                                <th>Grand Prix</th>
-                                <th>{teamRaces[0]?.Results[0]?.Driver?.familyName ?? ''}</th>
-                                <th>{teamRaces[0]?.Results[1]?.Driver?.familyName ?? ''}</th>
-                                <th>Points</th>
+                                <th onClick={() => handleClickOnHeader("Round")}>
+                                    <Link>Round {sortedByCollName.coll != "Round" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                <th onClick={() => handleClickOnHeader("Grand Prix")}>
+                                    <Link>Grand Prix {sortedByCollName.coll != "Grand Prix" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader(teamRaces[0]?.Results[0]?.Driver?.familyName ?? '')}>
+                                    <Link>{teamRaces[0]?.Results[0]?.Driver?.familyName ?? ''} {sortedByCollName.coll != (teamRaces[0]?.Results[0]?.Driver?.familyName ?? '') ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+
+                                <th onClick={() => handleClickOnHeader(teamRaces[0]?.Results[1]?.Driver?.familyName ?? '')}>
+                                    <Link>{teamRaces[0]?.Results[1]?.Driver?.familyName ?? ''} {sortedByCollName.coll != (teamRaces[0]?.Results[1]?.Driver?.familyName ?? '') ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                        
+                                <th onClick={() => handleClickOnHeader("Points")}>
+                                    <Link>Points {sortedByCollName.coll != "Points" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
                             </tr>
                         </thead>
                         <tbody>
