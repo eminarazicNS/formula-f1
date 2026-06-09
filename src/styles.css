@@ -30,7 +30,6 @@ body {
     justify-content: space-between;
     /* background: aqua; */
     padding: 30px 50px;
-
 }
 
 
@@ -160,6 +159,8 @@ a {
     justify-content: space-evenly;
     gap: 15px;
 }
+
+
 
 /* 
 .vNav ul li{
@@ -330,15 +331,51 @@ footer {
     width: 70%;
 }
 
+
+    .HamburgerMenu{     
+        position: absolute;
+        left: 1%;
+        top: 1%;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+
 @media screen and (max-width: 768px) {
+
+
+
     .wrapper {
         flex-direction: column;
     }
 
     .col1 nav {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
     }
+
+    .vNav ul {
+display: flex;
+         flex-direction: column;
+         /* position: absolute;
+         border-top: 3px solid orange;
+         top: 15vh;
+         right: 0;
+         height: 50vh;
+         width: 100%; */
+}   
+
+/*     
+.vNav ul {
+display: flex;
+         flex-direction: column;
+         position: absolute;
+         border-top: 3px solid orange;
+         top: 15vh;
+         right: 0;
+         height: 50vh;
+         width: 100%;
+}          */
 
     /* 
 .vNav ul {

@@ -9,6 +9,7 @@ import RaceDetails from "./components/RaceDetails";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { grey } from "@mui/material/colors";
+import { MdOutlineMenu, MdClose } from "react-icons/md";
 
 export default function App() {
   const [flags, setFlags] = useState([]);
@@ -18,8 +19,20 @@ export default function App() {
   const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [selectIsVisible, setSelectIsVisible] = useState(false);
   const [col2IsVisible, setCol2IsVisible] = useState(false);
+  const [click, setClick] = useState(false);
 
   const location = useLocation();
+
+  const Hamburger = <MdOutlineMenu className="HamburgerMenu silver-bg-shadow"
+            size="30px" color="black"
+            onClick={() => setClick(!click)}
+            />
+
+  const Close = <MdClose className="HamburgerMenu silver-bg-shadow"
+             size="30px" color="black"
+            onClick={() => setClick(!click)} />
+
+  const closeMenu = () => setClick(false);            
 
   useEffect(() => {
     getFlags();
@@ -63,7 +76,8 @@ export default function App() {
         >
         </video>
       <div className="col1">
-        <nav>
+        { click ? Close : Hamburger} 
+        { click &&  <nav>
           <div>
             <img className="logo silver-bg-shadow"
               //  src="../img/logo.png" alt="Logo" />
@@ -103,8 +117,8 @@ export default function App() {
               ><li><div className="menuIcons silver-bg-shadow"><img src="../img/Races1.png" alt="Races logo" />
               <span className="menuText">Races</span></div></li></NavLink>
             </ul>
-          </div>
-        </nav>
+          </div>           
+        </nav>}
       </div>
       <div className={col2IsVisible ? "col2" : "col3"}>
         <Routes>
