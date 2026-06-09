@@ -30,9 +30,7 @@ export default function App() {
 
   const Close = <MdClose className="HamburgerMenu silver-bg-shadow"
              size="30px" color="black"
-            onClick={() => setClick(!click)} />
-
-  const closeMenu = () => setClick(false);            
+            onClick={() => setClick(!click)} />  
 
   useEffect(() => {
     getFlags();
@@ -79,9 +77,15 @@ export default function App() {
         { click ? Close : Hamburger} 
         { click &&  <nav>
           <div>
-            <img className="logo silver-bg-shadow"
+            <img className="logo silver-bg-shadow" alt="Logo"
+            src={click ? '../img/logo.png' : '../img/F1-logo.png' }
+            />
+
+               {/*                
+                  <img className="logo silver-bg-shadow"
               //  src="../img/logo.png" alt="Logo" />
                src="../img/F1-logo.png" alt="Logo" />
+               */}
           </div>
 
           <div style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
