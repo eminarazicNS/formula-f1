@@ -56,23 +56,22 @@ export default function App() {
 
   return (
     <div className="wrapper">
-      <div>
         <video loop autoPlay muted id="bg-video"
           src={`${import.meta.env.BASE_URL}home-video/clip-race.mp4`}
           type="video/mp4"
           poster={`${import.meta.env.BASE_URL}home-video/video-poster.jpg`}
         >
         </video>
-      </div>
       <div className="col1">
         <nav>
           <div>
-            <img style={{ backgroundColor: "darkgray", borderRadius: "15px" }}
-              src="../img/logo.png" alt="Logo" />
+            <img className="logo silver-bg-shadow"
+              //  src="../img/logo.png" alt="Logo" />
+               src="../img/F1-logo.png" alt="Logo" />
           </div>
 
           <div style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
-            <select className="select-search" name="year" id="year"
+            <select className="select-search silver-bg-shadow" name="year" id="yearId"
               onChange={(e) => setSelectedYear(e.target.value)}>
               {years.map((year) => {
                 return (
@@ -82,8 +81,8 @@ export default function App() {
             </select>
           </div>
           <div style={searchIsVisible ? { visibility: "visible" } : { visibility: "hidden" }} >
-            <input className="select-search" type="search"
-              placeholder="Search table..." type="search"
+            <input className="select-search silver-bg-shadow" type="search"
+              placeholder="Search table..." 
               value={search}
               onChange={(e) => setSearch(e.target.value)} />
           </div>
@@ -93,13 +92,16 @@ export default function App() {
               <NavLink to="/drivers"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""}
-              ><li><img src="../img/Kaciga.png" alt="Drivers logo" /><div className="menuIcons">Drivers</div></li></NavLink>
+              ><li><div className="menuIcons silver-bg-shadow"><img src="../img/Kaciga.png" alt="Drivers logo" />
+                   <span className="menuText">Drivers</span></div></li></NavLink>
               <NavLink to="/teams" className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""}
-              ><li><img src="../img/Teams.png" alt="Teams logo" /><div className="menuIcons">Teams</div></li></NavLink>
+              ><li><div className="menuIcons silver-bg-shadow"><img src="../img/Teams.png" alt="Teams logo" />
+                 <span className="menuText">Teams</span></div></li></NavLink>
               <NavLink to="/races" className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""}
-              ><li><img src="../img/Races1.png" alt="Races logo" /><div className="menuIcons">Races</div></li></NavLink>
+              ><li><div className="menuIcons silver-bg-shadow"><img src="../img/Races1.png" alt="Races logo" />
+              <span className="menuText">Races</span></div></li></NavLink>
             </ul>
           </div>
         </nav>

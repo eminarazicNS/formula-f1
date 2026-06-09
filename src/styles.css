@@ -1,3 +1,10 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
 body {
     background-color: lightblue;
 }
@@ -6,18 +13,56 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: row;
-    flex: 1;
+    flex-direction: column;
+    /* align-items: stretch; */
+    /* flex: 1; */
 }
 
 .wrapper .col1 {
-    width: 20%;
+    width: 15%;
+    /* height: 15vh; */
+    width: 100%;
 }
 
 .col1 nav {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background: aqua; */
+    padding: 30px 50px;
+
 }
 
+
+/* 
+
+
+.wrapper .vNav img {
+    width: 100px;
+    height: 43.5px;
+}
+
+.vNav NavLink {
+    height: 15vh;
+}
+
+
+.vNav li{
+    width: 200px;
+    height: 70px;
+}
+
+
+.wrapper .vNav img {
+    width: 100px;
+    height: 43.5px;
+} */
+
+
+.wrapper .vNav img {
+    width: 100px;
+    height: 43.5px;
+}
 
 a {
     text-decoration: none;
@@ -28,25 +73,54 @@ a {
     font-family: sans-serif;
 }
 
+/* 
 .wrapper .col1 img {
     width: 200px;
     height: 200px;
-}
+    
+} */
 
-.menuIcons {
+.vNav .menuIcons {
     text-transform: uppercase;
     font-size: 20px;
     font-weight: bold;
     font-style: italic;
-    background-color: darkgray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* background-color: darkgray; */
+    /* text-align: center; */
+    /* display: flex;
+    flex-direction: column; */
+    border-radius: 15px;
+    background: linear-gradient(90deg, #8da0c2 0%, #f0f5ff 50%, #6a7b9a 100%);
+    width: 200px;
+    height: 70px;
+    /* transition: all 3s;  */
 }
 
-.menuIcons .active {
+.vNav .menuIcons:hover {
+    background: linear-gradient(180deg, #292929 0%, #f5f5f5 50%, #292929 100%);
+}
+
+.vNav .menuIcons .active {
     color: red;
 }
 
-.menuIcons .pending {
+.vNav .menuIcons .pending {
     color: blue;
+}
+
+.silver-bg-shadow {
+    box-shadow: 0px 10px 13px -7px #000000, 13px 13px 15px 2px rgba(58, 58, 58, 0);
+    background: linear-gradient(90deg, #8da0c2 0%, #f0f5ff 50%, #6a7b9a 100%);
+}
+
+.logo {
+    border-radius: 15px;
+    width: 220px;
+    height: 150px;
 }
 
 .select-search {
@@ -63,7 +137,8 @@ a {
 }
 
 .wrapper .col2 {
-    width: 80%;
+    width: 100%;
+    height: 80%;
     background-color: lightgray;
     flex: 1;
     padding: 20px;
@@ -73,13 +148,25 @@ a {
 .col2 h2 {
     font-style: italic;
     font-family: sans-serif;
-
     padding: 0 15px;
 }
 
-ul {
+
+
+.vNav ul {
     list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 15px;
 }
+
+/* 
+.vNav ul li{
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px 20px;
+} */
 
 .link {
     cursor: pointer;
@@ -97,6 +184,7 @@ ul {
 
 a:hover {
     color: red;
+    transition: .3s;
 }
 
 img:hover {
@@ -104,7 +192,9 @@ img:hover {
 }
 
 .wrapper .dd-col2 {
-    width: 80%;
+    /* width: 80%; */
+    height: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -204,32 +294,6 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.vNav ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-block: 0;
-    padding-inline: 0;
-}
-
-.vNav li {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    height: 70px;
-    background-color: darkgray;
-    margin: 5px;
-    border-radius: 15px;
-    font-size: 25px;
-}
-
-.wrapper .vNav img {
-    width: 100px;
-    height: 43.5px;
-}
 
 .breadcrumbs-wrapper .home,
 .middle,
@@ -247,8 +311,8 @@ tr:nth-child(even) {
 
 #bg-video {
     object-fit: cover;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     position: fixed;
     top: 0;
     left: 0;
@@ -264,4 +328,25 @@ footer {
     position: fixed;
     bottom: 0;
     width: 70%;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .col1 nav {
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* 
+.vNav ul {
+    flex-direction: row;
+} */
+
+
+    .wrapper .dd-col2 {
+        flex-direction: column;
+    }
 }
