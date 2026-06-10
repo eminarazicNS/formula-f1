@@ -19,18 +19,18 @@ export default function App() {
   const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [selectIsVisible, setSelectIsVisible] = useState(false);
   const [col2IsVisible, setCol2IsVisible] = useState(false);
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(true);
 
   const location = useLocation();
 
   const Hamburger = <MdOutlineMenu className="HamburgerMenu silver-bg-shadow"
-            size="30px" color="black"
-            onClick={() => setClick(!click)}
-            />
+    size="30px" color="black"
+    onClick={() => setClick(!click)}
+  />
 
   const Close = <MdClose className="HamburgerMenu silver-bg-shadow"
-             size="30px" color="black"
-            onClick={() => setClick(!click)} />  
+    size="30px" color="black"
+    onClick={() => setClick(!click)} />
 
   useEffect(() => {
     getFlags();
@@ -67,25 +67,19 @@ export default function App() {
 
   return (
     <div className="wrapper">
-        <video loop autoPlay muted id="bg-video"
-          src={`${import.meta.env.BASE_URL}home-video/clip-race.mp4`}
-          type="video/mp4"
-          poster={`${import.meta.env.BASE_URL}home-video/video-poster.jpg`}
-        >
-        </video>
+      <video loop autoPlay muted id="bg-video"
+        src={`${import.meta.env.BASE_URL}home-video/clip-race.mp4`}
+        type="video/mp4"
+        poster={`${import.meta.env.BASE_URL}home-video/video-poster.jpg`}
+      >
+      </video>
       <div className="col1">
-        { click ? Close : Hamburger} 
-        { click &&  <nav>
+        {click ? Close : Hamburger}
+        {click && <nav>
           <div>
-            <img className="logo silver-bg-shadow" alt="Logo"
-            src={click ? '../img/logo.png' : '../img/F1-logo.png' }
-            />
-
-               {/*                
-                  <img className="logo silver-bg-shadow"
+            <img className="logo silver-bg-shadow"
               //  src="../img/logo.png" alt="Logo" />
-               src="../img/F1-logo.png" alt="Logo" />
-               */}
+              src="../img/F1-logo.png" alt="Logo" />
           </div>
 
           <div style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
@@ -100,7 +94,7 @@ export default function App() {
           </div>
           <div style={searchIsVisible ? { visibility: "visible" } : { visibility: "hidden" }} >
             <input className="select-search silver-bg-shadow" type="search"
-              placeholder="Search table..." 
+              placeholder="Search table..."
               value={search}
               onChange={(e) => setSearch(e.target.value)} />
           </div>
@@ -111,17 +105,17 @@ export default function App() {
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""}
               ><li><div className="menuIcons silver-bg-shadow"><img src="../img/Kaciga.png" alt="Drivers logo" />
-                   <span className="menuText">Drivers</span></div></li></NavLink>
+                <span className="menuText">Drivers</span></div></li></NavLink>
               <NavLink to="/teams" className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""}
               ><li><div className="menuIcons silver-bg-shadow"><img src="../img/Teams.png" alt="Teams logo" />
-                 <span className="menuText">Teams</span></div></li></NavLink>
+                <span className="menuText">Teams</span></div></li></NavLink>
               <NavLink to="/races" className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""}
               ><li><div className="menuIcons silver-bg-shadow"><img src="../img/Races1.png" alt="Races logo" />
-              <span className="menuText">Races</span></div></li></NavLink>
+                <span className="menuText">Races</span></div></li></NavLink>
             </ul>
-          </div>           
+          </div>
         </nav>}
       </div>
       <div className={col2IsVisible ? "col2" : "col3"}>
