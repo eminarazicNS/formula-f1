@@ -132,29 +132,29 @@ export default function TeamDetails(props) {
             <div className="wrapper">
 
                 <div className="dd-col2">
-                    <div className="details">
-                        <BasicBreadcrumbs crumbs={crumbs} />
-                        <div className="driver-header">
-                            <img 
-                                className="driver-img" src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
-                                onError={(e) => {
+                    <div className="details silver-bg-shadow">
+                            <BasicBreadcrumbs crumbs={crumbs} />
+                            <div className="driver-header">
+                                <img
+                                    className="driver-img" src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
+                                    onError={(e) => {
 
-                                    e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`;
-                                }}
-                                alt={teamDetails.Constructor.constructorId}
-                                style={{ width: 150 }} />
+                                        e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`;
+                                    }}
+                                    alt={teamDetails.Constructor.constructorId}
+                                    style={{ width: 150 }} />
 
 
 
-                            <div style={{ padding: "5px", textAlign: "left" }}>
-                                <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
-                                    size={30} />
-                                <b><p>{teamDetails.Constructor.name}</p></b>
+                                <div style={{ padding: "5px", textAlign: "left" }}>
+                                    <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
+                                        size={30} />
+                                    <b><p>{teamDetails.Constructor.name}</p></b>
+                                </div>
                             </div>
-                        </div>
-                        <p>Country: {teamDetails.Constructor.nationality}</p>
-                        <p>History: <a href={teamDetails.Constructor.url} target="_blank"><OpenInNewIcon />
-                        </a></p>
+                            <p>Country: {teamDetails.Constructor.nationality}</p>
+                            <p>History: <a href={teamDetails.Constructor.url} target="_blank"><OpenInNewIcon />
+                            </a></p>
                     </div>
 
                     <div className="results">
@@ -174,76 +174,76 @@ export default function TeamDetails(props) {
         <div className="wrapper">
 
             <div className="dd-col2">
-                <div className="details">
-                    <BasicBreadcrumbs crumbs={crumbs} />
-                    <div className="driver-header">
-                            <img 
+                <div className="details silver-bg-shadow">
+                        <BasicBreadcrumbs crumbs={crumbs} />
+                        <div className="driver-header">
+                            <img
                                 className="driver-img"
-                                 src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
+                                src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
                                 onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`; }}
-                            alt={teamDetails.Constructor.constructorId}
-                            style={{ width: 150 }} />
-                        <div style={{ padding: "5px", textAlign: "left" }}>
-                            <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
-                                size={30} />
-                            <b><p>{teamDetails.Constructor.name}</p></b>
+                                alt={teamDetails.Constructor.constructorId}
+                                style={{ width: 150 }} />
+                            <div style={{ padding: "5px", textAlign: "left" }}>
+                                <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
+                                    size={30} />
+                                <b><p>{teamDetails.Constructor.name}</p></b>
+                            </div>
                         </div>
-                    </div>
-                    <p>Country: {teamDetails.Constructor.nationality}</p>
-                    <p>Points: {teamDetails.points}</p>
-                    <p>History: <a href={teamDetails.Constructor.url} target="_blank"><OpenInNewIcon />
-                    </a></p>
+                        <p>Country: {teamDetails.Constructor.nationality}</p>
+                        <p>Points: {teamDetails.points}</p>
+                        <p>History: <a href={teamDetails.Constructor.url} target="_blank"><OpenInNewIcon />
+                        </a></p>
                 </div>
 
                 <div className="results">
                     <h2>Formula 1 - {props.year} Results</h2>
                     <div className="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th onClick={() => handleClickOnHeader("Round")}>
-                                    <Link>Round {sortedByCollName.coll != "Round" ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                                <th onClick={() => handleClickOnHeader("Grand Prix")}>
-                                    <Link>Grand Prix {sortedByCollName.coll != "Grand Prix" ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th onClick={() => handleClickOnHeader("Round")}>
+                                        <Link>Round {sortedByCollName.coll != "Round" ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Grand Prix")}>
+                                        <Link>Grand Prix {sortedByCollName.coll != "Grand Prix" ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader(teamRaces[0]?.Results[0]?.Driver?.familyName ?? '')}>
-                                    <Link>{teamRaces[0]?.Results[0]?.Driver?.familyName ?? ''} {sortedByCollName.coll != (teamRaces[0]?.Results[0]?.Driver?.familyName ?? '') ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader(teamRaces[0]?.Results[0]?.Driver?.familyName ?? '')}>
+                                        <Link>{teamRaces[0]?.Results[0]?.Driver?.familyName ?? ''} {sortedByCollName.coll != (teamRaces[0]?.Results[0]?.Driver?.familyName ?? '') ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader(teamRaces[0]?.Results[1]?.Driver?.familyName ?? '')}>
-                                    <Link>{teamRaces[0]?.Results[1]?.Driver?.familyName ?? ''} {sortedByCollName.coll != (teamRaces[0]?.Results[1]?.Driver?.familyName ?? '') ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                                        
-                                <th onClick={() => handleClickOnHeader("Points")}>
-                                    <Link>Points {sortedByCollName.coll != "Points" ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredTeamRaces.map((race) => {
-                                return (
-                                    <tr key={race.round}>
-                                        <td>{race.round}</td>
-                                        <td className="link"
-                                            onClick={() => navigate(`/raceDetails/${race.round}`)}>
-                                            <div className="flag">
-                                                <Flag country={getFlagByNationality(props.flags, "",
-                                                    race.Circuit.Location.country)}
-                                                    size={30} />{race.raceName}
-                                            </div>
-                                        </td>
-                                        <td style={{ backgroundColor: getColorByPosition(race.Results[0]?.position ?? '') }}
-                                        >{race.Results[0]?.position ?? ''}</td>
-                                        <td style={{ backgroundColor: getColorByPosition(race.Results[1]?.position ?? '') }}
-                                        >{race.Results[1]?.position ?? ''}</td>
-                                        <td>{Number(race.Results[0]?.points ?? '') + Number(race.Results[1]?.points ?? '')}</td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                                    <th onClick={() => handleClickOnHeader(teamRaces[0]?.Results[1]?.Driver?.familyName ?? '')}>
+                                        <Link>{teamRaces[0]?.Results[1]?.Driver?.familyName ?? ''} {sortedByCollName.coll != (teamRaces[0]?.Results[1]?.Driver?.familyName ?? '') ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+
+                                    <th onClick={() => handleClickOnHeader("Points")}>
+                                        <Link>Points {sortedByCollName.coll != "Points" ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredTeamRaces.map((race) => {
+                                    return (
+                                        <tr key={race.round}>
+                                            <td>{race.round}</td>
+                                            <td className="link"
+                                                onClick={() => navigate(`/raceDetails/${race.round}`)}>
+                                                <div className="flag">
+                                                    <Flag country={getFlagByNationality(props.flags, "",
+                                                        race.Circuit.Location.country)}
+                                                        size={30} />{race.raceName}
+                                                </div>
+                                            </td>
+                                            <td style={{ backgroundColor: getColorByPosition(race.Results[0]?.position ?? '') }}
+                                            >{race.Results[0]?.position ?? ''}</td>
+                                            <td style={{ backgroundColor: getColorByPosition(race.Results[1]?.position ?? '') }}
+                                            >{race.Results[1]?.position ?? ''}</td>
+                                            <td>{Number(race.Results[0]?.points ?? '') + Number(race.Results[1]?.points ?? '')}</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

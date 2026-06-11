@@ -6,7 +6,7 @@
 
 
 body {
-    background-color: lightblue;
+    background-color: lightblue;    
 }
 
 .wrapper {
@@ -30,6 +30,7 @@ body {
     justify-content: space-between;
     /* background: aqua; */
     padding: 30px 50px;
+    padding-bottom: 0;
 }
 
 
@@ -128,11 +129,17 @@ a {
     height: 150px;
 }
 
+.select-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 .select-search {
     font-size: 20px;
     font-weight: bold;
     font-style: italic;
-    background-color: darkgray;
+    background-color: rgb(91, 132, 170);
     width: 200px;
     border-radius: 15px;
     text-align: center;
@@ -144,7 +151,7 @@ a {
 .wrapper .col2 {
     width: 100%;
     height: 80%;
-    background-color: lightgray;
+    /* background-color: lightgray; */
     flex: 1;
     padding: 20px;
     border-radius: 15px;
@@ -227,8 +234,10 @@ img:hover {
 
 .details {
     padding: 15px;
-    background-color: lightgray;
-    font-family: Arial, Helvetica, sans-serif;
+    /* background-color: lightgray; */
+    font-family: Arial, Helvetica, sans-serif;       
+     border-radius: 15px;
+    opacity:0.8;
 }
 
 .rd-details {
@@ -236,13 +245,14 @@ img:hover {
 }
 
 .results {
-    background-color: lightskyblue;
+    /* background-color: lightskyblue; */
+    background: linear-gradient(90deg, #8da0c2 0%, #f0f5ff 50%, #6a7b9a 100%);
     display: flex;
     flex-direction: column;
     align-items: stretch;
     flex: 1;
     padding: 5px 20px;
-    border-radius: 15px;
+    border-radius: 15px;    
 }
 
 .results .no-data-div {
@@ -265,6 +275,8 @@ img:hover {
     font-size: 20px;
 }
 
+
+
 table {
     border-collapse: collapse;
     background-color: lightcyan;
@@ -274,13 +286,16 @@ table {
 }
 
 .results th {
-    background-color: lightgray;
+    /* background-color: lightgray; */
+    background-color: lightblue;
 }
 
 .results th,
 td {
     text-align: left;
     border: 1px solid lightblue;
+    /* border: 1px solid lightblue; */
+    border-color: linear-gradient(90deg, #8da0c2 0%, #f0f5ff 50%, #6a7b9a 100%);
     font-family: Arial, Helvetica, sans-serif;
     padding: 1px;
 }
@@ -368,23 +383,6 @@ table {
 } 
 
 
-.col2 {
-    width: 100%;
-} 
-
-.dd-col2 {
-    width: 100%;
-} 
-
-.driver-header {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.driver-img {
-    width: 150px;
-}
 
 @media screen and (max-width: 768px) {   
 
@@ -429,14 +427,5 @@ display: flex;
 
     .wrapper .dd-col2 {
         flex-direction: column;
-    }
-
-     .driver-header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .driver-img {
-        width: 120px;
     }
 }

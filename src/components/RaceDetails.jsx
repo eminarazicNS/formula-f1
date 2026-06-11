@@ -69,11 +69,11 @@ export default function RaceDetails(props) {
             case "Best time":
                 if (sortedByCollNameQ.isAsc) {
                     resultQ = resultQ.sort((a, b) =>
-                    bestTime(a.Q1, a.Q2, a.Q3).localeCompare(bestTime(b.Q1, b.Q2, b.Q3)));
+                        bestTime(a.Q1, a.Q2, a.Q3).localeCompare(bestTime(b.Q1, b.Q2, b.Q3)));
                     // resultQ = resultQ.sort((a, b) => Number(bestTime(a.Q1, a.Q2, a.Q3)) - Number(bestTime(b.Q1, b.Q2, b.Q3)));
                 } else {
                     resultQ = resultQ.sort((a, b) =>
-                    bestTime(b.Q1, b.Q2, b.Q3).localeCompare(bestTime(a.Q1, a.Q2, a.Q3)));
+                        bestTime(b.Q1, b.Q2, b.Q3).localeCompare(bestTime(a.Q1, a.Q2, a.Q3)));
                     // resultQ = resultQ.sort((a, b) => Number(bestTime(b.Q1, b.Q2, b.Q3)) - Number(bestTime(a.Q1, a.Q2, a.Q3)));
                 }
                 break;
@@ -151,7 +151,7 @@ export default function RaceDetails(props) {
         }
     }
 
-    const handleClickOnHeader = (collName, sortedByCollName,setSortedByCollName) => {
+    const handleClickOnHeader = (collName, sortedByCollName, setSortedByCollName) => {
         let currIsAsc = sortedByCollName.isAsc;
         let currCollName = collName;
 
@@ -193,9 +193,9 @@ export default function RaceDetails(props) {
             <div className="wrapper">
 
                 <div className="dd-col2">
-                    <div className="details">
-                        <BasicBreadcrumbs crumbs={crumbs} />
-                        <p><b>Race round: {params.id}</b></p>
+                    <div className="details silver-bg-shadow">                        
+                            <BasicBreadcrumbs crumbs={crumbs} />
+                            <p><b>Race round: {params.id}</b></p>
                     </div>
 
                     <div className="results">
@@ -213,126 +213,126 @@ export default function RaceDetails(props) {
     return (
         <div className="wrapper">
             <div className="dd-col2">
-                <div className="details rd-details">
-                    <BasicBreadcrumbs crumbs={crumbs} />
-                    <Flag country={getFlagByNationality(props.flags, "", races.Circuit.Location.country)}
-                        size={200} />
-                    <p><b>Race round: {params.id}</b></p>
-                    <p><b>{races.raceName}</b></p>
-                    <p>Location: {races.Circuit.Location.locality} </p>
-                    <p>Date: {races.date}</p>
-                    <p>Full Report <a href={races.url} target="_blank"><OpenInNewIcon /></a></p>
+                <div className="details rd-details silver-bg-shadow">
+                        <BasicBreadcrumbs crumbs={crumbs} />
+                        <Flag country={getFlagByNationality(props.flags, "", races.Circuit.Location.country)}
+                            size={200} />
+                        <p><b>Race round: {params.id}</b></p>
+                        <p><b>{races.raceName}</b></p>
+                        <p>Location: {races.Circuit.Location.locality} </p>
+                        <p>Date: {races.date}</p>
+                        <p>Full Report <a href={races.url} target="_blank"><OpenInNewIcon /></a></p>
                 </div>
 
                 <div className="results rd-results">
                     <h2 style={{ textWrap: "nowrap" }}>Qualifying Results - {props.year}</h2>
                     <div className="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th onClick={() => handleClickOnHeader("Pos",sortedByCollNameQ,setSortedByCollNameQ)}>
-                                    <Link>Pos {sortedByCollNameQ.coll != "Pos" ? '' :
-                                        (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th onClick={() => handleClickOnHeader("Pos", sortedByCollNameQ, setSortedByCollNameQ)}>
+                                        <Link>Pos {sortedByCollNameQ.coll != "Pos" ? '' :
+                                            (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader("Driver",sortedByCollNameQ,setSortedByCollNameQ)}>
-                                    <Link>Driver {sortedByCollNameQ.coll != "Driver" ? '' :
-                                        (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Driver", sortedByCollNameQ, setSortedByCollNameQ)}>
+                                        <Link>Driver {sortedByCollNameQ.coll != "Driver" ? '' :
+                                            (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader("Team",sortedByCollNameQ,setSortedByCollNameQ)}>
-                                    <Link>Team {sortedByCollNameQ.coll != "Team" ? '' :
-                                        (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Team", sortedByCollNameQ, setSortedByCollNameQ)}>
+                                        <Link>Team {sortedByCollNameQ.coll != "Team" ? '' :
+                                            (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader("Best time",sortedByCollNameQ,setSortedByCollNameQ)}>
-                                    <Link>Best time {sortedByCollNameQ.coll != "Best time" ? '' :
-                                        (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Best time", sortedByCollNameQ, setSortedByCollNameQ)}>
+                                        <Link>Best time {sortedByCollNameQ.coll != "Best time" ? '' :
+                                            (sortedByCollNameQ.isAsc ? '▲' : '▼')}</Link></th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredQualifying.map((qualifier) => {
-                                return (
-                                    <tr key={qualifier.position}>
-                                        <td>{qualifier.position}</td>
-                                        <td
-                                            onClick={() => navigate(`/driverDetails/${qualifier.Driver.driverId}`)}
-                                        >
-                                            <div className="flag link">
-                                                <Flag country={getFlagByNationality(props.flags,
-                                                    qualifier.Driver.nationality)}
-                                                    size={30} />
-                                                {qualifier.Driver.familyName}
-                                            </div>
-                                        </td>
-                                        <td
-                                            onClick={() => navigate(`/teamDetails/${qualifier.Constructor.constructorId}`)}
-                                        >
-                                            <div className="link">
-                                                {qualifier.Constructor.name}
-                                            </div>
-                                        </td>
-                                        <td>{bestTime(qualifier.Q1, qualifier.Q2, qualifier.Q3)}</td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredQualifying.map((qualifier) => {
+                                    return (
+                                        <tr key={qualifier.position}>
+                                            <td>{qualifier.position}</td>
+                                            <td
+                                                onClick={() => navigate(`/driverDetails/${qualifier.Driver.driverId}`)}
+                                            >
+                                                <div className="flag link">
+                                                    <Flag country={getFlagByNationality(props.flags,
+                                                        qualifier.Driver.nationality)}
+                                                        size={30} />
+                                                    {qualifier.Driver.familyName}
+                                                </div>
+                                            </td>
+                                            <td
+                                                onClick={() => navigate(`/teamDetails/${qualifier.Constructor.constructorId}`)}
+                                            >
+                                                <div className="link">
+                                                    {qualifier.Constructor.name}
+                                                </div>
+                                            </td>
+                                            <td>{bestTime(qualifier.Q1, qualifier.Q2, qualifier.Q3)}</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
                 <div className="results rd-results">
                     <h2>Race Results - {props.year}</h2>
                     <div className="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th onClick={() => handleClickOnHeader("Pos",sortedByCollNameR, setSortedByCollNameR)}>
-                                    <Link>Pos {sortedByCollNameR.coll != "Pos" ? '' :
-                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th onClick={() => handleClickOnHeader("Pos", sortedByCollNameR, setSortedByCollNameR)}>
+                                        <Link>Pos {sortedByCollNameR.coll != "Pos" ? '' :
+                                            (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader("Driver",sortedByCollNameR, setSortedByCollNameR)}>
-                                    <Link>Driver {sortedByCollNameR.coll != "Driver" ? '' :
-                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Driver", sortedByCollNameR, setSortedByCollNameR)}>
+                                        <Link>Driver {sortedByCollNameR.coll != "Driver" ? '' :
+                                            (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader("Team",sortedByCollNameR, setSortedByCollNameR)}>
-                                    <Link>Team {sortedByCollNameR.coll != "Team" ? '' :
-                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Team", sortedByCollNameR, setSortedByCollNameR)}>
+                                        <Link>Team {sortedByCollNameR.coll != "Team" ? '' :
+                                            (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader("Result",sortedByCollNameR, setSortedByCollNameR)}>
-                                    <Link>Result {sortedByCollNameR.coll != "Result" ? '' :
-                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Result", sortedByCollNameR, setSortedByCollNameR)}>
+                                        <Link>Result {sortedByCollNameR.coll != "Result" ? '' :
+                                            (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
 
-                                <th onClick={() => handleClickOnHeader("Points",sortedByCollNameR, setSortedByCollNameR)}>
-                                    <Link>Points {sortedByCollNameR.coll != "Points" ? '' :
-                                        (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredRaces?.map((race) => {
-                                return (
-                                    <tr key={race.position}>
-                                        <td>{race.position}</td>
-                                        <td
-                                            onClick={() => navigate(`/driverDetails/${race.Driver.driverId}`)}
-                                        >
-                                            <div className="flag link">
-                                                <Flag country={getFlagByNationality(props.flags,
-                                                    race.Driver.nationality)}
-                                                    size={30} />{race.Driver.familyName}
-                                            </div>
-                                        </td>
-                                        <td
-                                            onClick={() => navigate(`/teamDetails/${race.Constructor.constructorId}`)}>
-                                            <div className="link">
-                                                {race.Constructor.name}
-                                            </div>
-                                        </td>
-                                        <td>{race?.Time?.time || "DNQ"}</td>
-                                        <td style={{ backgroundColor: getColorByPosition(race.position) }}>{race.points}</td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                                    <th onClick={() => handleClickOnHeader("Points", sortedByCollNameR, setSortedByCollNameR)}>
+                                        <Link>Points {sortedByCollNameR.coll != "Points" ? '' :
+                                            (sortedByCollNameR.isAsc ? '▲' : '▼')}</Link></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredRaces?.map((race) => {
+                                    return (
+                                        <tr key={race.position}>
+                                            <td>{race.position}</td>
+                                            <td
+                                                onClick={() => navigate(`/driverDetails/${race.Driver.driverId}`)}
+                                            >
+                                                <div className="flag link">
+                                                    <Flag country={getFlagByNationality(props.flags,
+                                                        race.Driver.nationality)}
+                                                        size={30} />{race.Driver.familyName}
+                                                </div>
+                                            </td>
+                                            <td
+                                                onClick={() => navigate(`/teamDetails/${race.Constructor.constructorId}`)}>
+                                                <div className="link">
+                                                    {race.Constructor.name}
+                                                </div>
+                                            </td>
+                                            <td>{race?.Time?.time || "DNQ"}</td>
+                                            <td style={{ backgroundColor: getColorByPosition(race.position) }}>{race.points}</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

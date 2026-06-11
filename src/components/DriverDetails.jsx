@@ -125,31 +125,31 @@ export default function DriverDetails(props) {
         return (
             <div className="wrapper">
                 <div className="dd-col2">
-                    <div className="details">
-                        <BasicBreadcrumbs crumbs={crumbs} />
-                        <div className="driver-header">
-                            <img 
-                                className="driver-img"
-                                src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
-                                onError={(e) => {
+                    <div className="details silver-bg-shadow">
+                            <BasicBreadcrumbs crumbs={crumbs} />
+                            <div className="driver-header">
+                                <img
+                                    className="driver-img"
+                                    src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
+                                    onError={(e) => {
 
-                                    e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`;
-                                }}
-                                alt={driverDetails.Driver.familyName}
-                                style={{ width: 150 }} />
-                            <div style={{ padding: "5px", textAlign: "left" }}>
-                                <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
-                                    size={30} />
-                                <b> <p>{driverDetails.Driver.givenName}</p>
-                                    <p>{driverDetails.Driver.familyName}</p>
-                                </b>
+                                        e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`;
+                                    }}
+                                    alt={driverDetails.Driver.familyName}
+                                    style={{ width: 150 }} />
+                                <div style={{ padding: "5px", textAlign: "left" }}>
+                                    <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
+                                        size={30} />
+                                    <b> <p>{driverDetails.Driver.givenName}</p>
+                                        <p>{driverDetails.Driver.familyName}</p>
+                                    </b>
+                                </div>
                             </div>
-                        </div>
 
-                        <p>Country: {driverDetails.Driver.nationality}</p>
-                        <p>Team: {driverDetails.Constructors[0].name} </p>
-                        <p>Birth: {driverDetails.Driver.dateOfBirth}</p>
-                        <p>History: <a href={driverDetails.Driver.url} target="_blank"><OpenInNewIcon /></a></p>
+                            <p>Country: {driverDetails.Driver.nationality}</p>
+                            <p>Team: {driverDetails.Constructors[0].name} </p>
+                            <p>Birth: {driverDetails.Driver.dateOfBirth}</p>
+                            <p>History: <a href={driverDetails.Driver.url} target="_blank"><OpenInNewIcon /></a></p>
                     </div>
 
                     <div className="results">
@@ -172,93 +172,93 @@ export default function DriverDetails(props) {
 
         <div className="wrapper">
             <div className="dd-col2">
-                <div className="details">
-                    <BasicBreadcrumbs crumbs={crumbs} />
-                    <div className="driver-header">
-                            <img 
+                <div className="details silver-bg-shadow">
+                        <BasicBreadcrumbs crumbs={crumbs} />
+                        <div className="driver-header">
+                            <img
                                 className="driver-img"
-                             src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
-                            onError={(e) => {e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`; }}
-                            alt={driverDetails.Driver.familyName}
-                            style={{ width: 150 }} />
-                        <div style={{ padding: "5px", textAlign: "left" }}>
-                            <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
-                                size={30} />
-                            <b> <p>{driverDetails.Driver.givenName}</p>
-                                <p>{driverDetails.Driver.familyName}</p>
-                            </b>
+                                src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
+                                onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`; }}
+                                alt={driverDetails.Driver.familyName}
+                                style={{ width: 150 }} />
+                            <div style={{ padding: "5px", textAlign: "left" }}>
+                                <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
+                                    size={30} />
+                                <b> <p>{driverDetails.Driver.givenName}</p>
+                                    <p>{driverDetails.Driver.familyName}</p>
+                                </b>
+                            </div>
                         </div>
-                    </div>
 
-                    <p>Country: {driverDetails.Driver.nationality}</p>
-                    <p>Team: {driverDetails.Constructors[0].name}</p>
-                    <p>Birth: {driverDetails.Driver.dateOfBirth}</p>
-                    <p>History: <a href={driverDetails.Driver.url} target="_blank"><OpenInNewIcon /></a></p>
+                        <p>Country: {driverDetails.Driver.nationality}</p>
+                        <p>Team: {driverDetails.Constructors[0].name}</p>
+                        <p>Birth: {driverDetails.Driver.dateOfBirth}</p>
+                        <p>History: <a href={driverDetails.Driver.url} target="_blank"><OpenInNewIcon /></a></p>
                 </div>
 
                 <div className="results">
                     <h2>Formula 1 - {props.year} Results</h2>
                     <div className="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th onClick={() => handleClickOnHeader("Round")}>
-                                    <Link>Round {sortedByCollName.coll != "Round" ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                                <th onClick={() => handleClickOnHeader("Grand Prix")}>
-                                    <Link>Grand Prix {sortedByCollName.coll != "Grand Prix" ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                                <th onClick={() => handleClickOnHeader("Team")}>
-                                    <Link>Team {sortedByCollName.coll != "Team" ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                                <th onClick={() => handleClickOnHeader("Grid")}>
-                                    <Link>Grid {sortedByCollName.coll != "Grid" ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                                <th onClick={() => handleClickOnHeader("Race")}>
-                                    <Link>Race {sortedByCollName.coll != "Race" ? '' :
-                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredDriverRaces.map((race) => {
-                                return (
-                                    <tr key={race.round}>
-                                        <td>{race.round}</td>
-                                        <td className="link"
-                                            onClick={() => navigate(`/raceDetails/${race.round}`)}
-                                        >
-                                            <div className="flag">
-                                                <Flag country={getFlagByNationality(props.flags, "",
-                                                    race.Circuit.Location.country)}
-                                                    size={30} />{race.raceName}
-                                            </div>
-                                        </td>
-                                        <td
-                                            onClick={() => navigate(`/teamDetails/${race.Results[0].Constructor.constructorId}`)}
-                                        >
-                                            <div className="link">
-                                                {race.Results[0].Constructor.name}
-                                            </div>
-                                        </td>
-                                        <td>{race.Results[0].grid}</td>
-                                        <td
-                                            style={{ backgroundColor: getColorByPosition(race.Results[0].position) }}
-                                        >
-                                            <div className="race-column">
-                                                {race.Results[0].position}
-                                                {parseInt(race.Results[0].position) > parseInt(race.Results[0].grid) ?
-                                                    <span className="down">({parseInt(race.Results[0].grid) - parseInt(race.Results[0].position)})</span> :
-                                                    <></>}
-                                                {parseInt(race.Results[0].position) < parseInt(race.Results[0].grid) ?
-                                                    <span className="up">(+{parseInt(race.Results[0].grid) - parseInt(race.Results[0].position)})</span> :
-                                                    <></>}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th onClick={() => handleClickOnHeader("Round")}>
+                                        <Link>Round {sortedByCollName.coll != "Round" ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Grand Prix")}>
+                                        <Link>Grand Prix {sortedByCollName.coll != "Grand Prix" ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Team")}>
+                                        <Link>Team {sortedByCollName.coll != "Team" ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Grid")}>
+                                        <Link>Grid {sortedByCollName.coll != "Grid" ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                    <th onClick={() => handleClickOnHeader("Race")}>
+                                        <Link>Race {sortedByCollName.coll != "Race" ? '' :
+                                            (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredDriverRaces.map((race) => {
+                                    return (
+                                        <tr key={race.round}>
+                                            <td>{race.round}</td>
+                                            <td className="link"
+                                                onClick={() => navigate(`/raceDetails/${race.round}`)}
+                                            >
+                                                <div className="flag">
+                                                    <Flag country={getFlagByNationality(props.flags, "",
+                                                        race.Circuit.Location.country)}
+                                                        size={30} />{race.raceName}
+                                                </div>
+                                            </td>
+                                            <td
+                                                onClick={() => navigate(`/teamDetails/${race.Results[0].Constructor.constructorId}`)}
+                                            >
+                                                <div className="link">
+                                                    {race.Results[0].Constructor.name}
+                                                </div>
+                                            </td>
+                                            <td>{race.Results[0].grid}</td>
+                                            <td
+                                                style={{ backgroundColor: getColorByPosition(race.Results[0].position) }}
+                                            >
+                                                <div className="race-column">
+                                                    {race.Results[0].position}
+                                                    {parseInt(race.Results[0].position) > parseInt(race.Results[0].grid) ?
+                                                        <span className="down">({parseInt(race.Results[0].grid) - parseInt(race.Results[0].position)})</span> :
+                                                        <></>}
+                                                    {parseInt(race.Results[0].position) < parseInt(race.Results[0].grid) ?
+                                                        <span className="up">(+{parseInt(race.Results[0].grid) - parseInt(race.Results[0].position)})</span> :
+                                                        <></>}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

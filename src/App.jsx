@@ -16,7 +16,7 @@ export default function App() {
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [search, setSearch] = useState("");
-  const [searchIsVisible, setSearchIsVisible] = useState(false);
+  //const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [selectIsVisible, setSelectIsVisible] = useState(false);
   const [col2IsVisible, setCol2IsVisible] = useState(false);
   const [click, setClick] = useState(true);
@@ -39,12 +39,12 @@ export default function App() {
 
   useEffect(() => {
     if (location.pathname === "/") {
-      setSearchIsVisible(false);
+      //setSearchIsVisible(false);
       setSelectIsVisible(false);
       setCol2IsVisible(false);
     } else {
       setSearch("");
-      setSearchIsVisible(true);
+      //setSearchIsVisible(true);
       setSelectIsVisible(true);
       setCol2IsVisible(true);
     }
@@ -80,7 +80,7 @@ export default function App() {
             <img className="logo silver-bg-shadow"
               //  src="../img/logo.png" alt="Logo" />
               src="../img/F1-logo.png" alt="Logo" />
-          </div>          
+          </div>
 
           <div className="vNav">
             <ul>
@@ -99,25 +99,47 @@ export default function App() {
                 <span className="menuText">Races</span></div></li></NavLink>
             </ul>
           </div>
-          <div style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
-            <select className="select-search silver-bg-shadow" name="year" id="yearId"
-              onChange={(e) => setSelectedYear(e.target.value)}>
-              {years.map((year) => {
-                return (
-                  <option key={year} value={year}>{year}</option>
-                );
-              })}
-            </select>
-          </div>
-          <div style={searchIsVisible ? { visibility: "visible" } : { visibility: "hidden" }} >
-            <input className="select-search silver-bg-shadow" type="search"
-              placeholder="Search table..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)} />
-          </div>
         </nav>}
+
+        
+      
+        {/* 
+        
+          <div className="select-container" style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
+          <select className="select-search silver-bg-shadow" name="year" id="yearId"
+            onChange={(e) => setSelectedYear(e.target.value)}>
+            {years.map((year) => {
+              return (
+                <option key={year} value={year}>{year}</option>
+              );
+            })}
+          </select>
+        </div>
+        <div style={searchIsVisible ? { visibility: "visible" } : { visibility: "hidden" }} >
+          <input className="select-search silver-bg-shadow" type="search"
+            placeholder="Search table..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)} />
+        </div>
+
+        */}
+
       </div>
-      <div className={col2IsVisible ? "col2" : ""}>
+      <div className={col2IsVisible ? "col2" : ""}>        
+        <div className="select-container" style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
+          <select className="select-search silver-bg-shadow" name="year" id="yearId"
+            onChange={(e) => setSelectedYear(e.target.value)}>
+            {years.map((year) => {
+              return (
+                <option key={year} value={year}>{year}</option>
+              );
+            })}
+          </select>
+          <input className="select-search silver-bg-shadow" type="search"
+            placeholder="Search table..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)} />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/drivers" element={<AllDrivers flags={flags} year={selectedYear}
