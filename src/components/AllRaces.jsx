@@ -117,6 +117,7 @@ export default function AllRaces(props) {
             <div className="col2" className="results">
                 <BasicBreadcrumbs crumbs={crumbs} />
                 <h2>RACE CALENDAR - {props.year}</h2>
+                <div className="table-container">
                 <table>
                     <thead>
                         <tr >
@@ -169,6 +170,7 @@ export default function AllRaces(props) {
                         })}
                     </tbody>
                 </table>
+                </div>
             </div>
         </div >
     );

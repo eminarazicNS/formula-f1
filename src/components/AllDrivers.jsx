@@ -110,6 +110,7 @@ export default function AllDrivers(props) {
             <div className="col2" className="results">
                 <BasicBreadcrumbs crumbs={crumbs} />
                 <h2>DRIVERS CHAMPIONSHIP - {props.year}</h2>
+                <div className="table-container">
                 <table>
                     <thead>
                         <tr>
@@ -152,6 +153,7 @@ export default function AllDrivers(props) {
                         })}
                     </tbody>
                 </table>
+                </div>
             </div>
         </div >
     );

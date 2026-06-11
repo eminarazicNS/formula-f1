@@ -80,24 +80,7 @@ export default function App() {
             <img className="logo silver-bg-shadow"
               //  src="../img/logo.png" alt="Logo" />
               src="../img/F1-logo.png" alt="Logo" />
-          </div>
-
-          <div style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
-            <select className="select-search silver-bg-shadow" name="year" id="yearId"
-              onChange={(e) => setSelectedYear(e.target.value)}>
-              {years.map((year) => {
-                return (
-                  <option key={year} value={year}>{year}</option>
-                );
-              })}
-            </select>
-          </div>
-          <div style={searchIsVisible ? { visibility: "visible" } : { visibility: "hidden" }} >
-            <input className="select-search silver-bg-shadow" type="search"
-              placeholder="Search table..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)} />
-          </div>
+          </div>          
 
           <div className="vNav">
             <ul>
@@ -116,9 +99,25 @@ export default function App() {
                 <span className="menuText">Races</span></div></li></NavLink>
             </ul>
           </div>
+          <div style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
+            <select className="select-search silver-bg-shadow" name="year" id="yearId"
+              onChange={(e) => setSelectedYear(e.target.value)}>
+              {years.map((year) => {
+                return (
+                  <option key={year} value={year}>{year}</option>
+                );
+              })}
+            </select>
+          </div>
+          <div style={searchIsVisible ? { visibility: "visible" } : { visibility: "hidden" }} >
+            <input className="select-search silver-bg-shadow" type="search"
+              placeholder="Search table..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)} />
+          </div>
         </nav>}
       </div>
-      <div className={col2IsVisible ? "col2" : "col3"}>
+      <div className={col2IsVisible ? "col2" : ""}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/drivers" element={<AllDrivers flags={flags} year={selectedYear}

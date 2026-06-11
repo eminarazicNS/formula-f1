@@ -134,9 +134,9 @@ export default function TeamDetails(props) {
                 <div className="dd-col2">
                     <div className="details">
                         <BasicBreadcrumbs crumbs={crumbs} />
-                        <div style={{ display: "flex" }}>
-
-                            <img src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
+                        <div className="driver-header">
+                            <img 
+                                className="driver-img" src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
                                 onError={(e) => {
 
                                     e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`;
@@ -176,11 +176,11 @@ export default function TeamDetails(props) {
             <div className="dd-col2">
                 <div className="details">
                     <BasicBreadcrumbs crumbs={crumbs} />
-                    <div style={{ display: "flex" }}>
-                        <img src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
-                            onError={(e) => {
-                                e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`;
-                            }}
+                    <div className="driver-header">
+                            <img 
+                                className="driver-img"
+                                 src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
+                                onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`; }}
                             alt={teamDetails.Constructor.constructorId}
                             style={{ width: 150 }} />
                         <div style={{ padding: "5px", textAlign: "left" }}>
@@ -197,6 +197,7 @@ export default function TeamDetails(props) {
 
                 <div className="results">
                     <h2>Formula 1 - {props.year} Results</h2>
+                    <div className="table-container">
                     <table>
                         <thead>
                             <tr>
@@ -243,6 +244,7 @@ export default function TeamDetails(props) {
                             })}
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

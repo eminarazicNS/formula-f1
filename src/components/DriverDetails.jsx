@@ -127,9 +127,10 @@ export default function DriverDetails(props) {
                 <div className="dd-col2">
                     <div className="details">
                         <BasicBreadcrumbs crumbs={crumbs} />
-                        <div style={{ display: "flex" }}>
-
-                            <img src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
+                        <div className="driver-header">
+                            <img 
+                                className="driver-img"
+                                src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
                                 onError={(e) => {
 
                                     e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`;
@@ -173,12 +174,11 @@ export default function DriverDetails(props) {
             <div className="dd-col2">
                 <div className="details">
                     <BasicBreadcrumbs crumbs={crumbs} />
-                    <div style={{ display: "flex" }}>
-                        <img src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
-                            onError={(e) => {
-                                //e.target.onerror = null;
-                                e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`;
-                            }}
+                    <div className="driver-header">
+                            <img 
+                                className="driver-img"
+                             src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
+                            onError={(e) => {e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`; }}
                             alt={driverDetails.Driver.familyName}
                             style={{ width: 150 }} />
                         <div style={{ padding: "5px", textAlign: "left" }}>
@@ -198,6 +198,7 @@ export default function DriverDetails(props) {
 
                 <div className="results">
                     <h2>Formula 1 - {props.year} Results</h2>
+                    <div className="table-container">
                     <table>
                         <thead>
                             <tr>
@@ -258,6 +259,7 @@ export default function DriverDetails(props) {
                             })}
                         </tbody>
                     </table>
+                    </div>
                 </div>
 
 

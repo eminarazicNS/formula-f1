@@ -93,6 +93,7 @@ export default function AllTeams(props) {
             <div className="col2" className="results">
                 <BasicBreadcrumbs crumbs={crumbs} />
                 <h2>CONSTRUCTORS CHAMPIONSHIP - {props.year}</h2>
+                <div className="table-container">
                 <table>
                     <thead>
                         <tr>
@@ -130,6 +131,7 @@ export default function AllTeams(props) {
                         })}
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     );
