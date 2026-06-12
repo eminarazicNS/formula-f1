@@ -142,11 +142,11 @@ export default function TeamDetails(props) {
                                         e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`;
                                     }}
                                     alt={teamDetails.Constructor.constructorId}
-                                    style={{ width: 150 }} />
+                                   />
 
 
 
-                                <div style={{ padding: "5px", textAlign: "left" }}>
+                                <div className="driver-flag">
                                     <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
                                         size={30} />
                                     <b><p>{teamDetails.Constructor.name}</p></b>
@@ -182,8 +182,8 @@ export default function TeamDetails(props) {
                                 src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
                                 onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`; }}
                                 alt={teamDetails.Constructor.constructorId}
-                                style={{ width: 150 }} />
-                            <div style={{ padding: "5px", textAlign: "left" }}>
+                                 />
+                            <div className="driver-flag">
                                 <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
                                     size={30} />
                                 <b><p>{teamDetails.Constructor.name}</p></b>

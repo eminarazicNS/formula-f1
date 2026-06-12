@@ -225,7 +225,7 @@ export default function RaceDetails(props) {
                 </div>
 
                 <div className="results rd-results">
-                    <h2 style={{ textWrap: "nowrap" }}>Qualifying Results - {props.year}</h2>
+                    <h2>Qualifying Results - {props.year}</h2>
                     <div className="table-container">
                         <table>
                             <thead>

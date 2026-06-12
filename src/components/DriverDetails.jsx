@@ -135,9 +135,8 @@ export default function DriverDetails(props) {
 
                                         e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`;
                                     }}
-                                    alt={driverDetails.Driver.familyName}
-                                    style={{ width: 150 }} />
-                                <div style={{ padding: "5px", textAlign: "left" }}>
+                                    alt={driverDetails.Driver.familyName} />
+                                <div className="driver-flag">
                                     <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
                                         size={30} />
                                     <b> <p>{driverDetails.Driver.givenName}</p>
@@ -175,13 +174,13 @@ export default function DriverDetails(props) {
                 <div className="details silver-bg-shadow">
                         <BasicBreadcrumbs crumbs={crumbs} />
                         <div className="driver-header">
-                            <img
+                            <img 
                                 className="driver-img"
                                 src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
                                 onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`; }}
                                 alt={driverDetails.Driver.familyName}
-                                style={{ width: 150 }} />
-                            <div style={{ padding: "5px", textAlign: "left" }}>
+                                />
+                            <div className="driver-flag" >
                                 <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
                                     size={30} />
                                 <b> <p>{driverDetails.Driver.givenName}</p>
