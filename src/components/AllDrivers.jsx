@@ -111,48 +111,48 @@ export default function AllDrivers(props) {
                 <BasicBreadcrumbs crumbs={crumbs} />
                 <h2>DRIVERS CHAMPIONSHIP - {props.year}</h2>
                 <div className="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th onClick={() => handleClickOnHeader("Position")}>
-                                <Link>Position {sortedByCollName.coll != "Position" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                            <th onClick={() => handleClickOnHeader("Driver")}>
-                                <Link>Driver {sortedByCollName.coll != "Driver" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                            <th onClick={() => handleClickOnHeader("Team")}>
-                                <Link>Team {sortedByCollName.coll != "Team" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                            <th onClick={() => handleClickOnHeader("Points")}>
-                                <Link>Points {sortedByCollName.coll != "Points" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredDrivers.map((driver) => {
-                            return (
-                                <tr key={driver.position}>
-                                    <td>{driver.position}</td>
-                                    <td
-                                        onClick={() => handleClick(driver.Driver.driverId)}>
-                                        <div className="link"><Flag country={
-                                            getFlagByNationality(props.flags, driver.Driver.nationality)}
-                                            size={30} />
-                                            {driver.Driver.givenName} {driver.Driver.familyName}
-                                        </div>
-                                    </td>
-                                    <td
-                                        onClick={() => navigate(`/teamDetails/${driver.Constructors[0].constructorId}`)}>
-                                        <div className="link">
-                                            {driver.Constructors[0].name}
-                                        </div>
-                                    </td>
-                                    <td>{driver.points}</td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th onClick={() => handleClickOnHeader("Position")}>
+                                    <Link>Position {sortedByCollName.coll != "Position" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                <th onClick={() => handleClickOnHeader("Driver")}>
+                                    <Link>Driver {sortedByCollName.coll != "Driver" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                <th onClick={() => handleClickOnHeader("Team")}>
+                                    <Link>Team {sortedByCollName.coll != "Team" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                <th onClick={() => handleClickOnHeader("Points")}>
+                                    <Link>Points {sortedByCollName.coll != "Points" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredDrivers.map((driver) => {
+                                return (
+                                    <tr key={driver.position}>
+                                        <td>{driver.position}</td>
+                                        <td
+                                            onClick={() => handleClick(driver.Driver.driverId)}>
+                                            <div className="link"><Flag country={
+                                                getFlagByNationality(props.flags, driver.Driver.nationality)}
+                                                size={30} />
+                                                {driver.Driver.givenName} {driver.Driver.familyName}
+                                            </div>
+                                        </td>
+                                        <td
+                                            onClick={() => navigate(`/teamDetails/${driver.Constructors[0].constructorId}`)}>
+                                            <div className="link">
+                                                {driver.Constructors[0].name}
+                                            </div>
+                                        </td>
+                                        <td>{driver.points}</td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div >

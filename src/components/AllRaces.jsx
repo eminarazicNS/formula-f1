@@ -64,10 +64,10 @@ export default function AllRaces(props) {
             case "Winner":
                 if (sortedByCollName.isAsc) {
                     result = result.sort((a, b) =>
-                    (a.Results[0].Driver.familyName).toLowerCase().localeCompare((b.Results[0].Driver.familyName).toLowerCase()));
+                        (a.Results[0].Driver.familyName).toLowerCase().localeCompare((b.Results[0].Driver.familyName).toLowerCase()));
                 } else {
                     result = result.sort((a, b) =>
-                    (b.Results[0].Driver.familyName).toLowerCase().localeCompare((a.Results[0].Driver.familyName).toLowerCase()));
+                        (b.Results[0].Driver.familyName).toLowerCase().localeCompare((a.Results[0].Driver.familyName).toLowerCase()));
                 }
                 break;
         }
@@ -79,7 +79,6 @@ export default function AllRaces(props) {
     const getRaces = async () => {
         const url = `https://api.jolpi.ca/ergast/f1/${props.year}/results/1.json`;
         const response = await axios.get(url);
-        //console.log("races=", response.data.MRData.RaceTable.Races);
         setRaces(response.data.MRData.RaceTable.Races);
         setLoading(false);
     }
@@ -118,58 +117,58 @@ export default function AllRaces(props) {
                 <BasicBreadcrumbs crumbs={crumbs} />
                 <h2>RACE CALENDAR - {props.year}</h2>
                 <div className="table-container">
-                <table>
-                    <thead>
-                        <tr >
-                            <th onClick={() => handleClickOnHeader("Round")}>
-                                <Link>Round {sortedByCollName.coll != "Round" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                    <table>
+                        <thead>
+                            <tr >
+                                <th onClick={() => handleClickOnHeader("Round")}>
+                                    <Link>Round {sortedByCollName.coll != "Round" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
 
-                            <th onClick={() => handleClickOnHeader("Grand Prix")}>
-                                <Link>Grand Prix {sortedByCollName.coll != "Grand Prix" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                <th onClick={() => handleClickOnHeader("Grand Prix")}>
+                                    <Link>Grand Prix {sortedByCollName.coll != "Grand Prix" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
 
-                            <th onClick={() => handleClickOnHeader("Circuit")}>
-                                <Link>Circuit {sortedByCollName.coll != "Circuit" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                <th onClick={() => handleClickOnHeader("Circuit")}>
+                                    <Link>Circuit {sortedByCollName.coll != "Circuit" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
 
-                            <th onClick={() => handleClickOnHeader("Date")}>
-                                <Link>Date {sortedByCollName.coll != "Date" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                <th onClick={() => handleClickOnHeader("Date")}>
+                                    <Link>Date {sortedByCollName.coll != "Date" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
 
-                            <th onClick={() => handleClickOnHeader("Winner")}>
-                                <Link>Winner {sortedByCollName.coll != "Winner" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredRaces.map((race) => {
-                            return (
-                                <tr key={race.round}>
-                                    <td>{race.round}</td>
-                                    <td onClick={() => handleClick(race.round)}>
-                                        <div className="link">
-                                            <Flag country={getFlagByNationality(props.flags, "",
-                                                race.Circuit.Location.country)}
-                                                size={30} />{race.raceName}
-                                        </div>
-                                    </td>
-                                    <td>{race.Circuit.circuitName}</td>
-                                    <td>{race.date}</td>
-                                    <td
-                                        onClick={() => navigate(`/driverDetails/${race.Results[0].Driver.driverId}`)}>
-                                        <div className="link">
-                                            <Flag country={
-                                                getFlagByNationality(props.flags, race.Results[0].Driver.nationality)}
-                                                size={30} />
-                                            {race.Results[0].Driver.familyName}
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                                <th onClick={() => handleClickOnHeader("Winner")}>
+                                    <Link>Winner {sortedByCollName.coll != "Winner" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredRaces.map((race) => {
+                                return (
+                                    <tr key={race.round}>
+                                        <td>{race.round}</td>
+                                        <td onClick={() => handleClick(race.round)}>
+                                            <div className="link">
+                                                <Flag country={getFlagByNationality(props.flags, "",
+                                                    race.Circuit.Location.country)}
+                                                    size={30} />{race.raceName}
+                                            </div>
+                                        </td>
+                                        <td>{race.Circuit.circuitName}</td>
+                                        <td>{race.date}</td>
+                                        <td
+                                            onClick={() => navigate(`/driverDetails/${race.Results[0].Driver.driverId}`)}>
+                                            <div className="link">
+                                                <Flag country={
+                                                    getFlagByNationality(props.flags, race.Results[0].Driver.nationality)}
+                                                    size={30} />
+                                                {race.Results[0].Driver.familyName}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div >

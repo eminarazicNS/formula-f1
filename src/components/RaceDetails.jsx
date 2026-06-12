@@ -1,4 +1,3 @@
-//Ne radi pretraga po Search polju, pa je taj deo zakomentarisan.
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router";
@@ -70,11 +69,9 @@ export default function RaceDetails(props) {
                 if (sortedByCollNameQ.isAsc) {
                     resultQ = resultQ.sort((a, b) =>
                         bestTime(a.Q1, a.Q2, a.Q3).localeCompare(bestTime(b.Q1, b.Q2, b.Q3)));
-                    // resultQ = resultQ.sort((a, b) => Number(bestTime(a.Q1, a.Q2, a.Q3)) - Number(bestTime(b.Q1, b.Q2, b.Q3)));
                 } else {
                     resultQ = resultQ.sort((a, b) =>
                         bestTime(b.Q1, b.Q2, b.Q3).localeCompare(bestTime(a.Q1, a.Q2, a.Q3)));
-                    // resultQ = resultQ.sort((a, b) => Number(bestTime(b.Q1, b.Q2, b.Q3)) - Number(bestTime(a.Q1, a.Q2, a.Q3)));
                 }
                 break;
         }
@@ -174,9 +171,6 @@ export default function RaceDetails(props) {
         return min;
     };
 
-    // bestTime(430,200,556);
-
-
 
     if (loading) {
         return <Loader />
@@ -193,9 +187,9 @@ export default function RaceDetails(props) {
             <div className="wrapper">
 
                 <div className="dd-col2">
-                    <div className="details silver-bg-shadow">                        
-                            <BasicBreadcrumbs crumbs={crumbs} />
-                            <p><b>Race round: {params.id}</b></p>
+                    <div className="details silver-bg-shadow">
+                        <BasicBreadcrumbs crumbs={crumbs} />
+                        <p><b>Race round: {params.id}</b></p>
                     </div>
 
                     <div className="results">
@@ -214,14 +208,14 @@ export default function RaceDetails(props) {
         <div className="wrapper">
             <div className="dd-col2">
                 <div className="details rd-details silver-bg-shadow">
-                        <BasicBreadcrumbs crumbs={crumbs} />
-                        <Flag country={getFlagByNationality(props.flags, "", races.Circuit.Location.country)}
-                            size={200} />
-                        <p><b>Race round: {params.id}</b></p>
-                        <p><b>{races.raceName}</b></p>
-                        <p>Location: {races.Circuit.Location.locality} </p>
-                        <p>Date: {races.date}</p>
-                        <p>Full Report <a href={races.url} target="_blank"><OpenInNewIcon /></a></p>
+                    <BasicBreadcrumbs crumbs={crumbs} />
+                    <Flag country={getFlagByNationality(props.flags, "", races.Circuit.Location.country)}
+                        size={200} />
+                    <p><b>Race round: {params.id}</b></p>
+                    <p><b>{races.raceName}</b></p>
+                    <p>Location: {races.Circuit.Location.locality} </p>
+                    <p>Date: {races.date}</p>
+                    <p>Full Report <a href={races.url} target="_blank"><OpenInNewIcon /></a></p>
                 </div>
 
                 <div className="results rd-results">

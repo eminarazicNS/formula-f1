@@ -16,7 +16,6 @@ export default function App() {
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [search, setSearch] = useState("");
-  //const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [selectIsVisible, setSelectIsVisible] = useState(false);
   const [col2IsVisible, setCol2IsVisible] = useState(false);
   const [click, setClick] = useState(true);
@@ -39,12 +38,10 @@ export default function App() {
 
   useEffect(() => {
     if (location.pathname === "/") {
-      //setSearchIsVisible(false);
       setSelectIsVisible(false);
       setCol2IsVisible(false);
     } else {
       setSearch("");
-      //setSearchIsVisible(true);
       setSelectIsVisible(true);
       setCol2IsVisible(true);
     }
@@ -78,7 +75,6 @@ export default function App() {
         {click && <nav>
           <div>
             <img className="logo silver-bg-shadow"
-              //  src="../img/logo.png" alt="Logo" />
               src="../img/F1-logo.png" alt="Logo" />
           </div>
 
@@ -100,29 +96,6 @@ export default function App() {
             </ul>
           </div>
         </nav>}
-
-        
-      
-        {/* 
-        
-          <div className="select-container" style={selectIsVisible ? { visibility: "visible" } : { visibility: "hidden" }}  >
-          <select className="select-search silver-bg-shadow" name="year" id="yearId"
-            onChange={(e) => setSelectedYear(e.target.value)}>
-            {years.map((year) => {
-              return (
-                <option key={year} value={year}>{year}</option>
-              );
-            })}
-          </select>
-        </div>
-        <div style={searchIsVisible ? { visibility: "visible" } : { visibility: "hidden" }} >
-          <input className="select-search silver-bg-shadow" type="search"
-            placeholder="Search table..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)} />
-        </div>
-
-        */}
 
       </div>
       <div className={col2IsVisible ? "col2" : ""}>        

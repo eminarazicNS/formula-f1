@@ -94,43 +94,43 @@ export default function AllTeams(props) {
                 <BasicBreadcrumbs crumbs={crumbs} />
                 <h2>CONSTRUCTORS CHAMPIONSHIP - {props.year}</h2>
                 <div className="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th onClick={() => handleClickOnHeader("Position")}>
-                                <Link>Round {sortedByCollName.coll != "Position" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th onClick={() => handleClickOnHeader("Position")}>
+                                    <Link>Round {sortedByCollName.coll != "Position" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
 
-                            <th onClick={() => handleClickOnHeader("Team")}>
-                                <Link>Round {sortedByCollName.coll != "Team" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                            <th>Details</th>
-                            <th onClick={() => handleClickOnHeader("Points")}>
-                                <Link>Round {sortedByCollName.coll != "Points" ? '' :
-                                    (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredTeams.map((team) => {
-                            return (
-                                <tr key={team.position}>
-                                    <td>{team.position}</td>
-                                    <td onClick={() => navigate(`/teamDetails/${team.Constructor.constructorId}`)}>
-                                        <div className="link">
-                                            <Flag country={getFlagByNationality(props.flags,
-                                                team.Constructor.nationality)}
-                                                size={30} />{team.Constructor.name}
-                                        </div>
-                                    </td>
-                                    <td>Details
-                                        <a href={team.Constructor.url} target="_blank"><OpenInNewIcon /></a>
-                                    </td>
-                                    <td>{team.points}</td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                                <th onClick={() => handleClickOnHeader("Team")}>
+                                    <Link>Round {sortedByCollName.coll != "Team" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                                <th>Details</th>
+                                <th onClick={() => handleClickOnHeader("Points")}>
+                                    <Link>Round {sortedByCollName.coll != "Points" ? '' :
+                                        (sortedByCollName.isAsc ? '▲' : '▼')}</Link></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredTeams.map((team) => {
+                                return (
+                                    <tr key={team.position}>
+                                        <td>{team.position}</td>
+                                        <td onClick={() => navigate(`/teamDetails/${team.Constructor.constructorId}`)}>
+                                            <div className="link">
+                                                <Flag country={getFlagByNationality(props.flags,
+                                                    team.Constructor.nationality)}
+                                                    size={30} />{team.Constructor.name}
+                                            </div>
+                                        </td>
+                                        <td>Details
+                                            <a href={team.Constructor.url} target="_blank"><OpenInNewIcon /></a>
+                                        </td>
+                                        <td>{team.points}</td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

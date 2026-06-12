@@ -133,28 +133,28 @@ export default function TeamDetails(props) {
 
                 <div className="dd-col2">
                     <div className="details silver-bg-shadow">
-                            <BasicBreadcrumbs crumbs={crumbs} />
-                            <div className="driver-header">
-                                <img
-                                    className="driver-img" src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
-                                    onError={(e) => {
+                        <BasicBreadcrumbs crumbs={crumbs} />
+                        <div className="driver-header">
+                            <img
+                                className="driver-img" src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
+                                onError={(e) => {
 
-                                        e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`;
-                                    }}
-                                    alt={teamDetails.Constructor.constructorId}
-                                   />
+                                    e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`;
+                                }}
+                                alt={teamDetails.Constructor.constructorId}
+                            />
 
 
 
-                                <div className="driver-flag">
-                                    <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
-                                        size={30} />
-                                    <b><p>{teamDetails.Constructor.name}</p></b>
-                                </div>
+                            <div className="driver-flag">
+                                <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
+                                    size={30} />
+                                <b><p>{teamDetails.Constructor.name}</p></b>
                             </div>
-                            <p>Country: {teamDetails.Constructor.nationality}</p>
-                            <p>History: <a href={teamDetails.Constructor.url} target="_blank"><OpenInNewIcon />
-                            </a></p>
+                        </div>
+                        <p>Country: {teamDetails.Constructor.nationality}</p>
+                        <p>History: <a href={teamDetails.Constructor.url} target="_blank"><OpenInNewIcon />
+                        </a></p>
                     </div>
 
                     <div className="results">
@@ -175,24 +175,24 @@ export default function TeamDetails(props) {
 
             <div className="dd-col2">
                 <div className="details silver-bg-shadow">
-                        <BasicBreadcrumbs crumbs={crumbs} />
-                        <div className="driver-header">
-                            <img
-                                className="driver-img"
-                                src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
-                                onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`; }}
-                                alt={teamDetails.Constructor.constructorId}
-                                 />
-                            <div className="driver-flag">
-                                <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
-                                    size={30} />
-                                <b><p>{teamDetails.Constructor.name}</p></b>
-                            </div>
+                    <BasicBreadcrumbs crumbs={crumbs} />
+                    <div className="driver-header">
+                        <img
+                            className="driver-img"
+                            src={`${import.meta.env.BASE_URL}img/${teamDetails.Constructor.constructorId}.png`}
+                            onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/F1-logo.png`; }}
+                            alt={teamDetails.Constructor.constructorId}
+                        />
+                        <div className="driver-flag">
+                            <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)}
+                                size={30} />
+                            <b><p>{teamDetails.Constructor.name}</p></b>
                         </div>
-                        <p>Country: {teamDetails.Constructor.nationality}</p>
-                        <p>Points: {teamDetails.points}</p>
-                        <p>History: <a href={teamDetails.Constructor.url} target="_blank"><OpenInNewIcon />
-                        </a></p>
+                    </div>
+                    <p>Country: {teamDetails.Constructor.nationality}</p>
+                    <p>Points: {teamDetails.points}</p>
+                    <p>History: <a href={teamDetails.Constructor.url} target="_blank"><OpenInNewIcon />
+                    </a></p>
                 </div>
 
                 <div className="results">

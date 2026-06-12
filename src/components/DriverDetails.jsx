@@ -126,29 +126,29 @@ export default function DriverDetails(props) {
             <div className="wrapper">
                 <div className="dd-col2">
                     <div className="details silver-bg-shadow">
-                            <BasicBreadcrumbs crumbs={crumbs} />
-                            <div className="driver-header">
-                                <img
-                                    className="driver-img"
-                                    src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
-                                    onError={(e) => {
+                        <BasicBreadcrumbs crumbs={crumbs} />
+                        <div className="driver-header">
+                            <img
+                                className="driver-img"
+                                src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
+                                onError={(e) => {
 
-                                        e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`;
-                                    }}
-                                    alt={driverDetails.Driver.familyName} />
-                                <div className="driver-flag">
-                                    <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
-                                        size={30} />
-                                    <b> <p>{driverDetails.Driver.givenName}</p>
-                                        <p>{driverDetails.Driver.familyName}</p>
-                                    </b>
-                                </div>
+                                    e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`;
+                                }}
+                                alt={driverDetails.Driver.familyName} />
+                            <div className="driver-flag">
+                                <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
+                                    size={30} />
+                                <b> <p>{driverDetails.Driver.givenName}</p>
+                                    <p>{driverDetails.Driver.familyName}</p>
+                                </b>
                             </div>
+                        </div>
 
-                            <p>Country: {driverDetails.Driver.nationality}</p>
-                            <p>Team: {driverDetails.Constructors[0].name} </p>
-                            <p>Birth: {driverDetails.Driver.dateOfBirth}</p>
-                            <p>History: <a href={driverDetails.Driver.url} target="_blank"><OpenInNewIcon /></a></p>
+                        <p>Country: {driverDetails.Driver.nationality}</p>
+                        <p>Team: {driverDetails.Constructors[0].name} </p>
+                        <p>Birth: {driverDetails.Driver.dateOfBirth}</p>
+                        <p>History: <a href={driverDetails.Driver.url} target="_blank"><OpenInNewIcon /></a></p>
                     </div>
 
                     <div className="results">
@@ -172,31 +172,31 @@ export default function DriverDetails(props) {
         <div className="wrapper">
             <div className="dd-col2">
                 <div className="details silver-bg-shadow">
-                        <BasicBreadcrumbs crumbs={crumbs} />
-                        <div className="driver-header">
-                            <img 
-                                className="driver-img"
-                                src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
-                                onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`; }}
-                                alt={driverDetails.Driver.familyName}
-                                />
-                            <div className="driver-flag" >
-                                <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
-                                    size={30} />
-                                <b> <p>{driverDetails.Driver.givenName}</p>
-                                    <p>{driverDetails.Driver.familyName}</p>
-                                </b>
-                            </div>
+                    <BasicBreadcrumbs crumbs={crumbs} />
+                    <div className="driver-header">
+                        <img
+                            className="driver-img"
+                            src={`${import.meta.env.BASE_URL}img/${driverDetails.Driver.driverId}.jpg`}
+                            onError={(e) => { e.target.src = `${import.meta.env.BASE_URL}img/avatar.png`; }}
+                            alt={driverDetails.Driver.familyName}
+                        />
+                        <div className="driver-flag" >
+                            <Flag country={getFlagByNationality(props.flags, driverDetails.Driver.nationality)}
+                                size={30} />
+                            <b> <p>{driverDetails.Driver.givenName}</p>
+                                <p>{driverDetails.Driver.familyName}</p>
+                            </b>
                         </div>
+                    </div>
 
-                        <p>Country: {driverDetails.Driver.nationality}</p>
-                        <p>Team: {driverDetails.Constructors[0].name}</p>
-                        <p>Birth: {driverDetails.Driver.dateOfBirth}</p>
-                        <p>History: <a href={driverDetails.Driver.url} target="_blank"><OpenInNewIcon /></a></p>
+                    <p>Country: {driverDetails.Driver.nationality}</p>
+                    <p>Team: {driverDetails.Constructors[0].name}</p>
+                    <p>Birth: {driverDetails.Driver.dateOfBirth}</p>
+                    <p>History: <a href={driverDetails.Driver.url} target="_blank"><OpenInNewIcon /></a></p>
                 </div>
 
                 <div className="results">
-                    <h2>Formula 1 - {props.year} Results</h2>                    
+                    <h2>Formula 1 - {props.year} Results</h2>
                     <div className="table-container">
                         <table>
                             <thead>
