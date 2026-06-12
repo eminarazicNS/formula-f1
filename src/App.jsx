@@ -68,9 +68,9 @@ export default function App() {
   return (
     <div className="wrapper">
       <video loop autoPlay muted id="bg-video"
-        src={`${import.meta.env.BASE_URL}home-video/clip-race.mp4`}
+        src={`${import.meta.env.BASE_URL}video/clip-race.mp4`}
         type="video/mp4"
-        poster={`${import.meta.env.BASE_URL}home-video/video-poster.jpg`}
+        poster={`${import.meta.env.BASE_URL}video/video-poster.jpg`}
       >
       </video>
       <div className="col1">
