@@ -1,3 +1,32 @@
+# Formula F1
+
+Formula F1 is a React application for exploring Formula 1 data, including drivers, constructors, race results and standings.
+
+## Features
+
+- Browse drivers and constructors
+- View race results by season
+- Driver and race details pages
+- Column sorting (ascending/descending)
+- Responsive design
+- Video loader
+- Dynamic routing
+
+## Technologies
+
+- React
+- React Router
+- CSS3
+- Ergast F1 API
+- Vercel
+
+## Live Demo
+
+https://formula-f1.vercel.app/
+
+---
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
