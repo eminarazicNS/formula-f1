@@ -196,7 +196,7 @@ export default function DriverDetails(props) {
                 </div>
 
                 <div className="results">
-                    <h2>Formula 1 - {props.year} Results</h2>
+                    <h2>Formula 1 - {props.year} Results</h2>                    
                     <div className="table-container">
                         <table>
                             <thead>

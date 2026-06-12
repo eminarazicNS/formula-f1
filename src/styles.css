@@ -259,11 +259,6 @@ td {
     justify-content: left;
     gap: 10px;
 }
-/* 
-.rd-results th {
-    white-space: nowrap;
-    overflow: hidden;
-} */
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
