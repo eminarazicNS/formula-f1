@@ -444,4 +444,9 @@ display: flex;
     .wrapper .dd-col2 {
         flex-direction: column;
     }
+
+    
+.results .no-data-div img {
+    width: 400px;
+}
 }
