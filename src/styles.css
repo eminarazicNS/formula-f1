@@ -336,6 +336,10 @@ footer {
     height: auto;
 }
 
+.driver-header {
+    display: flex;
+}
+
 .driver-img{
     width: 150px;
 }
