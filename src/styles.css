@@ -278,6 +278,11 @@ img:hover {
 }
 
 
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
 
 table {
     border-collapse: collapse;
@@ -363,15 +368,6 @@ footer {
     border-radius: 5px;
 }
 
-.table-container {
-    overflow-x: auto;
-    width: 100%;
-}
-
-table {
-     width: 100%;
-     border-collapse: collapse;
- }
  
 .results {
     width: 100%;
